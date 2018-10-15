@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="style1.css">
+	<link rel=icon href="">
+	<meta name='viewport' content="width=device-width, height=device-height, initial-scale=1">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div id="contextMenu" class="dropdown clearfix">
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display:block; font-size: 12px;">
+      <li><a tabindex="-1" href="#" style="color: #9b9b9b; font-size: 10px;">Mark Order as</a></li>
+      <li class="divider" style="margin: 3px 0;"></li>
+      <li><a tabindex="-1" href="#">Cancelled</a></li>
+      <li class="divider" style="margin: 3px 0;"></li>
+      <li><a tabindex="-1" href="#">Returned</a></li>
+    </ul>
+  </div>
+	<span id="add-crew" style="display: none;"></span>
+  	<div class="modal fade" id="deleteRole" role="dialog" style="margin-left: calc(50% - 300px); margin-top: 100px;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" style="width: 600px">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+        	<h5>Confirm<br><br>This will delete the crew member. Are you sure you want to continue?</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button class="actionButton" id="confirm-delete-member"  data-dismiss="modal">OK</button> 
+        </div>
+      </div>
+    </div>
+  	</div>
+	<div class="row">
+		<div class="col-lg-2">
+			<ul class="nav nav-pills nav-stacked">
+				<div class="container-fluid">
+				    <div class="navbar-header">
+				      <a class="navbar-brand" href="#"><img alt="Brand" src="unnamed.png" class="img-responsive" id="logo"></a>
+				    </div>
+		  		</div>
+		  		<li role="presentation" id="name"><img src="download.png" class="img-responsive" id="setHeight">
+		  			<a href="#" id="user" class="unactive">Jonathan</a>
+		  			<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Admin
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a href="#">Log out</a></li>
+					  </ul>
+					</div>
+		  		</li>
+			  <li role="presentation" class="setPad active"><a href="orders.html" id="active"><span class="glyphicon glyphicon-book unactiveIcon"></span> Orders</a></li>
+			  <li role="presentation" class="setPad"><a href="reports.html" class="unactive"><span class="glyphicon glyphicon-signal unactiveIcon"></span> Reports</a></li>
+			  <li role="presentation" class="setPad"><a href="crew.html" class="unactive"><span class="glyphicon glyphicon-user activeIcon"></span> Crew</a></li>
+			  <li role="presentation" class="setPad"><a href="payments.html" class="unactive"><span class="glyphicon glyphicon-sort unactiveIcon"></span> Payments</a></li>
+			  <li role="presentation" class="setPad"><a href="account.html" class="unactive"><span class="glyphicon glyphicon-user unactiveIcon"></span> Account</a></li>
+			  <a href="#" id="help">Need Help?</a>
+			</ul>
+		</div>
+		<div class="col-lg-10">
+			<div class="page-header">
+  				<h3>
+  					<span id="mainTitle" class="expand-hide">
+  						<div id="user">
+  							<span style="margin-right: 30px;">Orders</span>
+	  						<span style="display: inline-block;"><select class="form-control" id="lang">
+								<option>Today</option>
+							    <option>Yesterday</option>
+							</select></span>
+						</div>
+  					</span>
+  					<div class="input-group expand-hide" style="height: 36px; width: 150px; margin-left: 670px; margin-right: 50px; float: left;" id="search-bar">
+						 <span class="input-group-btn">
+						 	<button class="btn btn-default add-border" type="button" style="height: 36px; border-right: 0;" id="role-add"><span class="glyphicon glyphicon-search" style="font-size: 15px; color: #4a4a4a"></span></button>
+						 </span>
+					      <input type="text" class="form-control" id=role-text style="height: 36px; border-left: 0; outline: none; font-size: 14px;" placeholder="Search" >
+					</div><!-- /input-group -->
+  					<span class="glyphicon glyphicon-time" onclick="notification()" style="display: inherit;"></span>
+  				</h3>
+			</div>
+			<div class="expand-hide">
+				<button type="button" class="btn list-map selected" style="border-radius: 4px 0 0 4px; margin-left: 100px;">List</button><button type="button" class="btn list-map" style="border-radius: 0 4px 4px 0">Map</button>
+				<button type="button" class="btn order-type selected" style="border-radius: 4px 0 0 4px; margin-left: 100px;" id="unassigned-orders">Unassigned</button><button type="button" class="btn order-type" id="assigned-orders">Assigned</button><button type="button" class="btn order-type" id="transit-orders">In Transit</button><button type="button" class="btn order-type" id="delivered-orders">Delivered</button><button type="button" class="btn order-type" style="border-radius: 0 4px 4px 0" id="all-orders">All</button>
+				<button type="button" class="btn btn-default assign" style="margin-top: 15px; font-size: 10px !important; margin-left: 100px;"><span style="font-size: 14px; color: rgba(243, 172, 36, 0.6)">T</span><br>Assign</button>
+				<br>
+				<h6 style="margin-left: 100px; color: #4a4a4a; display: inline-block; margin-top: 30px;" class="no-order">Sort by</h6>
+				<div class="dropdown no-order" style="display: inline-block; padding-left: 10px;">
+					  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span id="sort-by">Order #</span>
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					  	<li><a href="#" id="sort-by-order">Order #</a></li>
+					    <li><a href="#" id="sort-by-status">Status</a></li>
+					  </ul>
+				</div>
+			</div>
+			<div class="" id="empty"
+				<span class="glyphicon glyphicon-book" style="font-size: 35px;"></span>
+				<h4>No orders to show here</h4>
+			</div>
+			<div class="container-fluid expand-hide" id="main-crew" style="margin-top: 20px;">
+				<div style="height: 100%; width: 100%; background: white; margin-top: 0; padding-top: 15%;" id="no-order">
+					<span class="glyphicon glyphicon-book" style="font-size: 35px;"></span>
+					<h4>No orders to show here</h4>
+				</div>
+				<div class="list-group" id="order-list" >
+				  <a href="#" class="list-group-item" id="flexing" name='Unassigned' order=234634>
+				  	<div class="flex">
+				  		<h5>Order # 234634</h5>
+				  		<h5>Ravi Kiran<br>Noida Sec 42</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5>
+				  			ETP<div class="oval" style="background: #4a4a4a;"></div> 
+				  			ETD
+				  		</h5>
+				  		<h5>5 min - 33 min</h5>	
+				  	</div>
+				  	<div class="flex">
+				  		<div class="drop-area"  ondrop="drop(event)" ondragover="allowDrop(event)">drop here to assign</div>
+				  		<div class="unacknowledged">
+				  			<div class="unassign">x</div>
+				  			<span class="glyphicon circle" style="background: #f8d300; margin-top: 3px;"></span>
+				  			<span class="delivery-boy" style="float: left;">Gopi</span><br>
+				  			<span style="float: left;">3 min</span>
+				  		</div>
+				  	</div>
+				  	<div class="flex" style="flex: 2">
+				  		<div class="drag" draggable=true  ondragstart="drag(event)" name=Gopi>
+				  			Gopi<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">5 min 20 min</div>
+				  		</div>
+				  		<div class="drag" draggable=true ondragstart="drag(event)" name=Ramesh>
+				  			Ramesh<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">0 min 32 min</div>
+				  		</div>
+				  		<div class="drag" draggable=true ondragstart="drag(event)" name=Rahul>
+				  			Rahul<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">5 min 40 min</div>
+				  		</div>
+				  		<button class="btn reminder" style="display: none;">Send Reminder</button>
+				  	</div>
+				  </a>
+				  <a href="#" class="list-group-item" name='Unassigned' del=345223 id="flexing">
+				  	<div class="flex">
+				  		<h5>Order # 345223</h5>
+				  		<h5>Kavita<br>Mayur Vihar 1</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5>3 min - 45 min</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<div class="drop-area"  ondrop="drop(event)" ondragover="allowDrop(event)">drop here to assign</div>
+				  		<div class="unacknowledged">
+				  			<div class="unassign">x</div>
+				  			<span class="glyphicon circle" style="background: #f8d300; margin-top: 3px;"></span>
+				  			<span class="delivery-boy" style="float: left;">Gopi</span><br>
+				  			<span style="float: left;">3 min</span>
+				  		</div>
+				  	</div>
+				  	<div class="flex" style="flex: 2">
+				  		<div class="drag" draggable=true  ondragstart="drag(event)" name=Gopi>
+				  			Gopi<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">5 min 20 min</div>
+				  		</div>
+				  		<div class="drag" draggable=true ondragstart="drag(event)" name=Ramesh>
+				  			Ramesh<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">0 min 32 min</div>
+				  		</div>
+				  		<div class="drag" draggable=true ondragstart="drag(event)" name=Rahul>
+				  			Rahul<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">5 min 40 min</div>
+				  		</div>
+				  		<button class="btn reminder" style="display: none;">Send Reminder</button>
+				  	</div>
+				  </a>
+				  <a href="#" class="list-group-item" name='Unassigned' del=457323 id="flexing">
+				  	<div class="flex">
+				  		<h5>Order # 457323</h5>
+				  		<h5>Sameer<br>Noida Sec 5</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5>2 min - 45 min</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<div class="drop-area"  ondrop="drop(event)" ondragover="allowDrop(event)">drop here to assign</div>
+				  		<div class="unacknowledged">
+				  			<div class="unassign">x</div>
+				  			<span class="glyphicon circle" style="background: #f8d300; margin-top: 3px;"></span>
+				  			<span class="delivery-boy" style="float: left;">Gopi</span><br>
+				  			<span style="float: left;">3 min</span>
+				  		</div>
+				  	</div>
+				  	<div class="flex" style="flex: 2">
+				  		<div class="drag" draggable=true  ondragstart="drag(event)" name=Gopi>
+				  			Gopi<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">5 min 20 min</div>
+				  		</div>
+				  		<div class="drag" draggable=true ondragstart="drag(event)" name=Ramesh>
+				  			Ramesh<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">0 min 32 min</div>
+				  		</div>
+				  		<div class="drag" draggable=true ondragstart="drag(event)" name=Rahul>
+				  			Rahul<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">5 min 40 min</div>
+				  		</div>
+				  		<button class="btn reminder" style="display: none;">Send Reminder</button>
+				  	</div>
+				  </a>
+				  <a href="#" class="list-group-item" name='Unassigned' del=345723 id="flexing">
+				  	<div class="flex">
+				  		<h5>Order # 345723</h5>
+				  		<h5>Ram babu<br>Film City</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5>0 min - 40 min</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<div class="drop-area"  ondrop="drop(event)" ondragover="allowDrop(event)">drop here to assign</div>
+				  		<div class="unacknowledged">
+				  			<div class="unassign">x</div>
+				  			<span class="glyphicon circle" style="background: #f8d300; margin-top: 3px;"></span>
+				  			<span class="delivery-boy" style="float: left;">Gopi</span><br>
+				  			<span style="float: left;">3 min</span>
+				  		</div>
+				  	</div>
+				  	<div class="flex" style="flex: 2">
+				  		<div class="drag" draggable=true  ondragstart="drag(event)" name=Gopi>
+				  			Gopi<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">5 min 20 min</div>
+				  		</div>
+				  		<div class="drag" draggable=true ondragstart="drag(event)" name=Ramesh>
+				  			Ramesh<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">0 min 32 min</div>
+				  		</div>
+				  		<div class="drag" draggable=true ondragstart="drag(event)" name=Rahul>
+				  			Rahul<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">5 min 40 min</div>
+				  		</div>
+				  		<button class="btn reminder" style="display: none;">Send Reminder</button>
+				  	</div>
+				  </a>
+				  <a href="#" class="list-group-item" name='Unassigned' del=357232 id="flexing">
+				  	<div class="flex">
+				  		<h5>Order # 357232</h5>
+				  		<h5>Suresh Kumar<br>Noida Sec 12</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5>0 min - 30 min</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<div class="drop-area"  ondrop="drop(event)" ondragover="allowDrop(event)">drop here to assign</div>
+				  		<div class="unacknowledged">
+				  			<div class="unassign">x</div>
+				  			<span class="glyphicon circle" style="background: #f8d300; margin-top: 3px;"></span>
+				  			<span class="delivery-boy" style="float: left;">Gopi</span><br>
+				  			<span style="float: left;">3 min</span>
+				  		</div>
+				  	</div>
+				  	<div class="flex" style="flex: 2">
+				  		<div class="drag" draggable=true  ondragstart="drag(event)" name=Gopi>
+				  			Gopi<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">5 min 20 min</div>
+				  		</div>
+				  		<div class="drag" draggable=true ondragstart="drag(event)" name=Ramesh>
+				  			Ramesh<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">0 min 32 min</div>
+				  		</div>
+				  		<div class="drag" draggable=true ondragstart="drag(event)" name=Rahul>
+				  			Rahul<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">5 min 40 min</div>
+				  		</div>
+				  		<button class="btn reminder" style="display: none;">Send Reminder</button>
+				  	</div>
+				  </a>
+				  <a href="#" class="list-group-item" name='Unassigned' del=357244 id="flexing">
+				  	<div class="flex">
+				  		<h5>Order # 357244</h5>
+				  		<h5>9834501233<br>Airport</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5>0 min - 30 min</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<div class="drop-area"  ondrop="drop(event)" ondragover="allowDrop(event)">drop here to assign</div>
+				  		<div class="unacknowledged">
+				  			<div class="unassign">x</div>
+				  			<span class="glyphicon circle" style="background: #f8d300; margin-top: 3px;"></span>
+				  			<span class="delivery-boy" style="float: left;">Gopi</span><br>
+				  			<span style="float: left;">3 min</span>
+				  		</div>
+				  	</div>
+				  	<div class="flex" style="flex: 2">
+				  		<div class="drag" draggable=true  ondragstart="drag(event)" name=Gopi>
+				  			Gopi<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">5 min 20 min</div>
+				  		</div>
+				  		<div class="drag" draggable=true ondragstart="drag(event)" name=Ramesh>
+				  			Ramesh<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">0 min 32 min</div>
+				  		</div>
+				  		<div class="drag" draggable=true ondragstart="drag(event)" name=Rahul>
+				  			Rahul<br>
+				  			<div style="font-size: 11px; margin-top: 10px;">5 min 40 min</div>
+				  		</div>
+				  		<button class="btn reminder" style="display: none;">Send Reminder</button>
+				  	</div>
+				  </a>
+				</div>
+			<div class="list-group" id="crew-list" style="display: none;">
+				  <a href="#" class="list-group-item view" name='Returned' del=234634 id="flexing">
+				  	<div class="flex">
+				  		<h5>Order # 234634</h5>
+				  		<h5>Ravi Kiran<br>Noida Sec 42</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5><span class="glyphicon glyphicon-repeat"></span> &nbsp; Returned</h5>
+				  	</div>
+				  	<div class="flex crew-exp">
+				  		<h5>Vidya Bhushan</h5>
+				  	</div>
+				  	<div class="flex opener crew-exp">></div>
+				  </a>
+				  <a href="#" class="list-group-item view" name='Cancelled' del=345223 id="flexing">
+				  	<div class="flex">
+				  		<h5>Order # 345223</h5>
+				  		<h5>Kavita<br>Mayur Vihar 1</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5><span class="glyphicon glyphicon-remove-circle"></span> &nbsp; Cancelled</h5>
+				  	</div>
+				  	<div class="flex crew-exp">
+				  		<h5>Amit Kumar</h5>
+				  	</div>
+				  	<div class="flex opener crew-exp">></div>
+				  </a>
+				  <a href="#" class="list-group-item view" name='In Transit' del=457323 id="flexing">
+				  	<div class="flex">
+				  		<h5>Order # 457323</h5>
+				  		<h5>Sameer<br>Noida Sec 5</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5><span class="glyphicon glyphicon-shopping-cart"></span> &nbsp; In Transit</h5>
+				  	</div>
+				  	<div class="flex crew-exp">
+				  		<h5>Gopi Chand</h5>
+				  	</div>
+				  	<div class="flex opener crew-exp">></div>
+				  </a>
+				  <a href="#" class="list-group-item view" name='Delivered' del=345723 id="flexing">
+				  	<div class="flex">
+				  		<h5>Order # 345723</h5>
+				  		<h5>Ram babu<br>Film City</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5><span class="glyphicon glyphicon-book"></span> &nbsp; Delivered</h5>
+				  	</div>
+				  	<div class="flex crew-exp">
+				  		<h5>Amit Kumar</h5>
+				  	</div>
+				  	<div class="flex opener crew-exp">></div>
+				  </a>
+				  <a href="#" class="list-group-item view" name='Unassigned' del=357232 id="flexing">
+				  	<div class="flex">
+				  		<h5>Order # 357232</h5>
+				  		<h5>Suresh Kumar<br>Noida Sec 12</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5><span class="glyphicon glyphicon-hourglass"></span> &nbsp; Unassigned</h5>
+				  	</div>
+				  	<div class="flex crew-exp">
+				  		<h5><span style="color: #9b9b9b;">Unassigned</span></h5>
+				  	</div>
+				  	<div class="flex opener crew-exp">></div>
+				  </a>
+				  <a href="#" class="list-group-item view" name='Returned' del=357244 id="flexing">
+				  	<div class="flex">
+				  		<h5>Order # 357244</h5>
+				  		<h5>9834501233<br>Airport</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5><span class="glyphicon glyphicon-repeat"></span> &nbsp; Returned</h5>
+				  	</div>
+				  	<div class="flex crew-exp">
+				  		<h5>Rajiv Gandhi</h5>
+				  	</div>
+				  	<div class="flex opener crew-exp">></div>
+				  </a>
+				</div>
+			</div>
+			<div id="crew-det" class="context" style="margin-top: 20px;">
+					<div style=" height: calc(100% - 50px); overflow-y: auto;">
+						<div class="opener detail-view" style="position: absolute; left: 20px; top: 20px" id="det-close"><</div>
+						<span class="detail-view">
+							<h5 style="color: #4a4a4a;">
+								<span id="member-name">Rajiv</span>
+								<div class="oval"></div>
+								<span id="member-status">5 &nbsp;<span class="glyphicon glyphicon-star-empty"></span></span>
+							</h5>
+							<br>
+							<table class="table" id="detail-table" style=" margin:auto; font-size: 13px; color: #4a4a4a; width: 50%; border-bottom: solid 3px #f3f3f3; margin-bottom: 30px;">
+						    	<tr>
+						    		<td>Time</td>
+						    		<td>12:40 PM  12th May</td>
+						    	</tr>
+						    	<tr>
+						    		<td>Remarks</td>
+						    		<td>speedy delivery, loved the service</td>
+						    	</tr>
+						    	<tr><td></td><td></tr>
+						    	<tr><td></td><td></tr>
+						    	<tr><td></td><td></tr>
+						    </table>
+						    <h5>Banana & Strawberries Ice cream<br>- Double (124 Gms) &nbsp;  &nbsp; x 1</h5>
+						    <table class="table" id="detail-table" style=" margin:auto; margin-top: 20px; font-size: 13px; color: #4a4a4a; width: 60%; border-bottom: solid 3px #f3f3f3;  margin-bottom: 30px;">
+						    	<tr>
+						    		<td>Item Total</td>
+						    		<td>$ 145.0</td>
+						    	</tr><tr>
+						    		<td>Service Tax</td>
+						    		<td>$ 8.7</td>
+						    	</tr>
+						    	<tr>
+						    		<td>Delivery Charges</td>
+						    		<td>$ 30.0</td>
+						    	</tr>
+						    	<tr>
+						    		<td>Grand Total</td>
+						    		<td>$ 183.7</td>
+						    	</tr>
+						    	<tr><td></td><td></tr>
+						    	<tr><td></td><td></tr>
+						    	<tr><td></td><td></tr>
+							</table>
+							<h5>Customer Address</h5>
+						</span>
+					</div>
+					<div style="height: 50px; background: white;">	
+						<div style="float: right; margin-right: 20px;" class="detail-view">
+							<button type="button" class="btn btn-default trash" id="open-context"><span class="glyphicon glyphicon-pencil" style="font-size: 13px; color: black;"></span></button>
+						</div>
+					</div>
+			</div>
+				<div id="notifications">
+					<button id="expandButton" onclick="expand()"><<</button>
+					<ul class="nav nav-pills nav-justified" id="notificationNav">
+					  <li role="presentation" class="active"><a href="#" id="activeWarn" style="color: white">Warnings</a></li>
+					  <li role="presentation"><a href="#" id="activeNotify">Notifications</a></li>
+					</ul>
+					<br><br>
+		  			<div class="dropdown">
+						  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						  	<span  id="selected">Open</span>
+						    <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						    <li><a href="#" id="option">Close</a></li>
+						  </ul>
+					</div>
+					<br><br>
+					<div id="warn">
+						<div class="floating opend">
+							<ul class="inline firstHalf">
+								<span class="time">6:22 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Vidya has not acknowledge order for > 5 min<br>
+									<button class="actionButton">Resolve</button>
+								</li><br><br>
+								<span class="time">1:22 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Ravi has started his shift for delivery at 1:22 pm<br>
+									<button class="actionButton">Approve</button> 
+									<span style="font-size: 12px; cursor: pointer;">Reject</span>
+								</li><br><br>
+							</ul>
+							<div class="inline secondHalf">
+								<ul class="inline firstHalf">
+								<span class="time">10: 45 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Order #4523 has been delayed by Bhushan<br>
+									<button class="actionButton">Send Reminder</button>
+								</li><br><br>
+								<span class="time">8:20 am</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Gopi has started his shift for cooking at 8:20 am<br>
+									<h6>Leave a comment</h6>
+									<textarea placeholder="shop is closed for morning half today"></textarea><br>
+									<button class="actionButton">OK</button> 
+									<span style="font-size: 12px; cursor: pointer;">Cancel</span>
+								</li><br><br>
+								</ul>
+							</div>
+						</div>
+						<div class="floating closed">
+							<ul class="inline firstHalf">
+								<span class="time">6:22 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Vidya has not acknowledge order for > 5 min<br>
+									<button class="actionButton" id="acceptedButton" disabled>Resolve</button>
+									<span class="glyphicon glyphicon-ok-circle"></span>
+								</li><br><br>
+								<span class="time">1:22 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Ravi has started his shift for delivery at 1:22 pm<br>
+									<button class="actionButton" id="acceptedButton" disabled>Approve</button>
+									<span class="glyphicon glyphicon-ok-circle"></span>
+								</li><br><br>
+							</ul>
+							<div class="inline secondHalf">
+								<ul class="inline firstHalf">
+									<span class="time">10: 45 pm</span><br>
+									<span class="glyphicon circle"></span>
+									<li>Order #4523 has been delayed by Bhushan<br>
+										<button class="actionButton" id="acceptedButton" disabled>Send Reminder</button>
+										<span class="glyphicon glyphicon-ok-circle"></span>
+									</li><br><br>
+									<span class="time">8:20 am</span><br><span class="glyphicon circle"></span>
+									<li>Gopi has started his shift for cooking at 8:20 am<br>
+										<h6>Leave a comment</h6>
+										<textarea placeholder="shop is closed for morning half today" readonly></textarea><br>
+										<button class="actionButton" id="acceptedButton">OK</button>
+										<span class="glyphicon glyphicon-ok-circle"></span>
+									</li><br><br>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="not">
+						<div class="floating opend">
+							<ul class="inline firstHalf">
+								<span class="time">6:22 pm</span><br>
+								<span class="glyphicon circleGreen"></span>
+								<li>Vidya has not acknowledge order for > 5 min</li><br><br>
+								<span class="time">1:22 pm</span><br>
+								<span class="glyphicon circleGreen"></span>
+								<li>Ravi has started his shift for delivery at 1:22 pm<br></li><br><br>
+							</ul>
+							<div class="inline secondHalf">
+								<ul class="inline firstHalf">
+									<span class="time">10: 45 pm</span><br>
+									<span class="glyphicon circleGreen"></span>
+									<li>Order #4523 has been delayed by Bhushan</li><br><br>
+									<span class="time">8:20 am</span><br>
+									<span class="glyphicon circleGreen"></span>
+									<li>Gopi has started his shift for cooking at 8:20 am</li><br><br>
+								</ul>
+							</div>
+						</div>
+						<div class="floating closed">
+							<ul class="inline firstHalf">
+								<span class="time">6:22 pm</span><br>
+								<span class="glyphicon circleGreen"></span>
+								<li>Order #4573 asigned to Mohan succesfully</li><br><br>
+								<span class="time">1:22 pm</span><br>
+								<span class="glyphicon circleGreen"></span>
+								<li>Ravi has started his shift for delivery at 1:22 pm</li><br><br>
+							</ul>
+							<div class="inline secondHalf">
+								<ul class="inline firstHalf">
+									<span class="time">10: 45 pm</span><br>
+									<span class="glyphicon circleGreen"></span>
+									<li>Order # 34634523 acknolwledged by Bhushan</li><br><br>
+									<span class="time">8:20 am</span><br><span class="glyphicon circleGreen"></span>
+									<li>Gopi has started his shift for cooking at 8:20 am</li><br><br>
+								</ul>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script type="text/javascript" src=script.js></script>
+</body>
+</html>
+

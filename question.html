@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Security question</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel=icon href="favicon_2.ico">
+	<meta name='viewport' content="width=device-width, height=device-height, initial-scale=1">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style type="text/css">
+		h6{
+			padding-top: 0;
+		}
+		#login{
+			margin-top: 3%;
+			height: 510px;
+		}
+		.form-control{
+			border: 0;
+			border-bottom: 1px solid #979797;
+			border-radius: 0;
+		}
+		@media only screen and (max-width: 321px){
+			#login{
+				height: 485px;
+			}
+			#logo{
+				max-width: 60px;
+			}
+		}
+		@media only screen and (max-height: 481px){
+			body{
+				overflow: initial;
+			}
+			html{
+				height: initial;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="page-header" id="pad">
+		<div class="container-fluid" id="logoDiv"><img src="unnamed.png" class="img-responsive" id="logo"></div>
+		<div class="container-fluid map">
+			<div id="login">
+				<h5>Almost there!<br>Please answer the following security questions</h5>
+				<form>
+					<h6 class="gray">Question 1</h6>
+					<div class="form-group">
+					  <select class="form-control" id="sel1">
+					    <option>What is your school name?</option>
+					    <option>What is your mother's name?</option>
+					    <option>Something else here</option>
+					  </select>
+					</div>
+					<div class="form-group">
+						<h6 class="gray">Answer</h6>
+					  <input type="text" class="form-control" id="ans1" oninput="check3()">
+					  <h6 id=enter1>Please enter the answer</h6>
+					</div>
+				    <h6 style="padding-top: 15px;" class="gray">Question 2</h6>
+					<div class="form-group">
+					  <select class="form-control">
+					    <option>What is your first pet name?</option>
+					    <option>Who is your role model?</option>
+					    <option>Something else here</option>
+					  </select>
+					</div>
+					<div class="form-group">
+						<h6 class="gray">Answer</h6>
+					  <input type="text" class="form-control" id="ans2" oninput="check3()">
+					  <h6 id="enter2">Please enter the answer</h6>
+					</div>
+				     <button type="button" class="btn btn-default" id="pro"><h6 style="padding-top:0;">Proceed</h6></button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script type="text/javascript" src=script.js></script>
+</body>
+</html>
+

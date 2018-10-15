@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="style1.css">
+	<link rel=icon href="">
+	<meta name='viewport' content="width=device-width, height=device-height, initial-scale=1">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+  	<div class="modal fade" id="deleteRole" role="dialog" style="margin-left: calc(50% - 300px); margin-top: 100px;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" style="width: 600px">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+        	<h5>Confirm<br><br>This will delete the crew member. Are you sure you want to continue?</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button class="actionButton" id="confirm-delete-member"  data-dismiss="modal">OK</button> 
+        </div>
+      </div>
+    </div>
+  	</div>
+	<div class="row">
+		<div class="col-lg-2">
+			<ul class="nav nav-pills nav-stacked">
+				<div class="container-fluid">
+				    <div class="navbar-header">
+				      <a class="navbar-brand" href="#"><img alt="Brand" src="unnamed.png" class="img-responsive" id="logo"></a>
+				    </div>
+		  		</div>
+		  		<li role="presentation" id="name"><img src="download.png" class="img-responsive" id="setHeight">
+		  			<a href="#" id="user" class="unactive">Jonathan</a>
+		  			<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Admin
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a href="#">Log out</a></li>
+					  </ul>
+					</div>
+		  		</li>
+			  <li role="presentation" class="setPad"><a href="orders.html" class="unactive"><span class="glyphicon glyphicon-book unactiveIcon"></span> Orders</a></li>
+			  <li role="presentation" class="setPad"><a href="reports.html" class="unactive"><span class="glyphicon glyphicon-signal unactiveIcon"></span> Reports</a></li>
+			  <li role="presentation" class="active setPad"><a href="crew.html" id="active"><span class="glyphicon glyphicon-user activeIcon"></span> Crew</a></li>
+			  <li role="presentation" class="setPad"><a href="payments.html" class="unactive"><span class="glyphicon glyphicon-sort unactiveIcon"></span> Payments</a></li>
+			  <li role="presentation" class="setPad"><a href="account.html" class="unactive"><span class="glyphicon glyphicon-user unactiveIcon"></span> Account</a></li>
+			  <a href="#" id="help">Need Help?</a>
+			</ul>
+		</div>
+		<div class="col-lg-10">
+			<div class="page-header">
+  				<h3>
+  					<span id="mainTitle" class="expand-hide">Crew</span>
+  					<div class="input-group expand-hide" style="height: 36px; width: 150px; margin-left: 700px; float: left;" id="search-bar">
+						 <span class="input-group-btn">
+						 	<button class="btn btn-default add-border" type="button" style="height: 36px; border-right: 0;" id="role-add"><span class="glyphicon glyphicon-search" style="font-size: 15px; color: #4a4a4a"></span></button>
+						 </span>
+					      <input type="text" class="form-control" id=role-text style="height: 36px; border-left: 0; outline: none; font-size: 14px;" placeholder="Search" >
+					</div><!-- /input-group -->
+  					<span class="glyphicon glyphicon-time" onclick="notification()"></span>
+  				</h3>
+			</div>
+			<div class="expand-hide">
+				<button class="btn-default" type="button" id="add">+ Add</button>
+				<span id="sorting">Sort by</span>
+				<div class="dropdown" id="sort-type">
+					  <button class="btn btn-default dropdown-toggle color-change" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span id="sort-by">Rating</span>
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a href="#" id="sort-by-name">Name</a></li>
+					  	<li><a href="#" id="sort-by-rat">Rating</a></li>
+					    <li><a href="#" id="sort-by-del">Delivery per day</a></li>
+					  </ul>
+				</div>
+			</div>
+			<div class="" id="empty">
+				<span class="glyphicon glyphicon-user" style="font-size: 35px;"></span>
+				<h4>Please add crew to get started</h4>
+			</div>
+			<div class="container-fluid expand-hide" id="main-crew">
+				<div class="list-group" id="crew-list">
+				  <a href="#" class="list-group-item view" id="flexing" name='Rajiv Gandhi' rat='4.12' del='3'>
+				  	<div class="flex">
+				  		<h5>Rajiv Gandhi</h5>
+				  		<h5>9834501233<br>Manager</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5>4.12 &nbsp;<span class="glyphicon glyphicon-star-empty"></span></h5>
+				  	</div>
+				  	<div class="flex crew-exp">
+				  		<h5>Average delivery: 3 per day</h5>
+				  	</div>
+				  	<div class="flex opener crew-exp">></div>
+				  </a>
+				  <a href="#" class="list-group-item view" name='Vidya Bhushan' rat='4.25' del='12' id="flexing">
+				  	<div class="flex">
+				  		<h5>Vidya Bhushan</h5>
+				  		<h5>9834501233<br>Delivery Boy</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5>4.25 &nbsp;<span class="glyphicon glyphicon-star-empty"></span></h5>
+				  	</div>
+				  	<div class="flex crew-exp">
+				  		<h5>Average delivery: 12 per day</h5>
+				  	</div>
+				  	<div class="flex opener crew-exp">></div>
+				  </a>
+				  <a href="#" class="list-group-item view" name='Gopi Chand' rat='4.31' del='10' id="flexing">
+				  	<div class="flex">
+				  		<h5>Gopi Chand</h5>
+				  		<h5>9834501233<br>Associate</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5>4.31 &nbsp;<span class="glyphicon glyphicon-star-empty"></span></h5>
+				  	</div>
+				  	<div class="flex crew-exp">
+				  		<h5>Average delivery: 10 per day</h5>
+				  	</div>
+				  	<div class="flex opener crew-exp">></div>
+				  </a>
+				  <a href="#" class="list-group-item view" name='Amit Kumar' rat='4.87' del='15' id="flexing">
+				  	<div class="flex">
+				  		<h5>Amit Kumar</h5>
+				  		<h5>9834501233<br>Delivery Boy</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5>4.87 &nbsp;<span class="glyphicon glyphicon-star-empty"></span></h5>
+				  	</div>
+				  	<div class="flex crew-exp">
+				  		<h5>Average delivery: 15 per day</h5>
+				  	</div>
+				  	<div class="flex opener crew-exp">></div>
+				  </a>
+				  <a href="#" class="list-group-item view" name='Pankaj Tiwari' rat='4.90' del='8' id="flexing">
+				  	<div class="flex">
+				  		<h5>Pankaj Tiwari</h5>
+				  		<h5>9834501233<br>Associate</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5>4.90 &nbsp;<span class="glyphicon glyphicon-star-empty"></span></h5>
+				  	</div>
+				  	<div class="flex crew-exp">
+				  		<h5>Average delivery: 8 per day</h5>
+				  	</div>
+				  	<div class="flex opener crew-exp">></div>
+				  </a>
+				  <a href="#" class="list-group-item view" name='Harshit Aggarwal' rat='5.00' del='8' id="flexing">
+				  	<div class="flex">
+				  		<h5>Harshit Aggarwal</h5>
+				  		<h5>9834501233<br>Developer</h5>
+				  	</div>
+				  	<div class="flex">
+				  		<h5>4.90 &nbsp;<span class="glyphicon glyphicon-star-empty"></span></h5>
+				  	</div>
+				  	<div class="flex crew-exp">
+				  		<h5>Average delivery: 8 per day</h5>
+				  	</div>
+				  	<div class="flex opener crew-exp">></div>
+				  </a>
+				</div>
+				<div id="add-crew">
+					<span id="add-here">
+						<div class="add-details" style="margin-left: 50px;">
+							<form id="detail-add" style="text-align: left; padding-top: 0; width: 90%">
+								<div style="width: 220px; margin: auto;">
+									<h6 class="floating-label">Mobile No.</h6>
+									<input type="text" class="form-control float-start" id="ans1" placeholder="Mobile No." style="display: inline-block; height: 25px; font-size: 14px; width: initial; background: transparent;">
+								</div>
+								<div style="width: 220px; margin: auto;">
+									<h6 class="floating-label">E-mail ID</h6>
+									<input type="text" class="form-control float-start" id="ans1" placeholder="E-mail ID" style="display: inline-block; height: 25px; font-size: 14px; width: initial; background: transparent;">
+								</div>
+								<div style="width: 220px; margin: auto; padding-right: 20px;">
+									<h6 class="floating-label">Role</h6>
+									<select class="form-control float-select" style="background: transparent; color: #979797;">
+									   <option value="" disabled selected style="color: transparent; height: 0;">Role</option>
+											    <option value="Delivery">Delivery</option>
+											    <option value="Packing">Packing</option>
+											    <option value="Cashier">Cashier</option>
+									  </select>
+								</div>
+								<div style="width: 290px; margin-top: 10px; margin-bottom: 10px; margin-left: 0;">
+									<div class="remove-extra" style="display: inline-block; border: solid 1px #979797; border-radius: 10px !important; height: 20px; width: 20px; cursor: pointer; visibility: hidden;	">
+											<button type="button" class="btn btn-default trash" style="margin: auto; width: 16px; height: 7px; background: transparent;"><hr style="height: 2px; width: 7px; margin-bottom: 1px; background:  #979797;"></button>
+										</div>
+								 	<div style="display: inline-block; margin-left: 10px;">
+									 	<h6 class="floating-label">Activity</h6>
+										<select class="form-control float-select" style="background: transparent; color: #979797;">
+										   <option value="" disabled selected style="color: transparent; height: 0;">Activity</option>
+											    <option value="Delivery">Delivery</option>
+											    <option value="Packing">Packing</option>
+											    <option value="Cashier">Cashier</option>
+										 </select>
+									</div>
+									<div style="display: inline-block; margin-left: 30px;">
+									 	<h6 class="floating-label">Pay (hourly)</h6>
+									 	<h6 style="display: inline-block; margin-top: 0;">$ </h6>
+										<input type="text" class="form-control float-start" id="ans1" placeholder="Pay(hourly)" style="width: 80px; display: inline-block; margin-left: 15px; height: 25px; font-size: 14px; background: transparent;">
+									</div>
+								</div>
+								<span style="display: none;">
+									<div class="cost">
+										<div class="remove-extra" style="display: inline-block; border: solid 1px #979797; border-radius: 10px !important; height: 20px; width: 20px; cursor: pointer;">
+											<button type="button" class="btn btn-default trash" style="margin: auto; width: 16px; height: 7px; background: transparent;"><hr style="height: 2px; width: 7px; margin-bottom: 1px; background:  #979797;"></button>
+										</div>
+									 	<div style="display: inline-block; margin-left: 10px;">
+											<select class="form-control" style="color: #979797; background: transparent;">
+												<option value="" disabled selected style="color: transparent; height: 0;">select</option>
+											    <option value="Delivery">Delivery</option>
+											    <option value="Packing">Packing</option>
+											    <option value="Cashier">Cashier</option>
+											 </select>
+										</div>
+										<div style="display: inline-block; margin-left: 30px;">
+										 	<h6 style="display: inline-block; margin-top: 0;">$ </h6>
+											<input type="text" class="form-control" id="ans1" placeholder="enter" style="width: 80px; display: inline-block; margin-left: 15px; height: 25px; font-size: 14px; background: transparent;">
+										</div>
+									</div>
+								</span>
+							</form>
+							<button class="actionButton add-cost" style="margin-left: 50px;">+ Add Activity</button> 
+						</div>
+						<span style="display: none;">
+							<div class="add-details" id="add-this-one" style="margin-left: 50px;">
+								<form id="detail-add" style="text-align: left; padding-top: 0; width: 90%">
+									<div style="width: 220px; margin: auto;">
+										<h6 class="floating-label">Mobile No.</h6>
+										<input type="text" class="form-control float-start" id="ans1" placeholder="Mobile No." style="display: inline-block; height: 25px; font-size: 14px; width: initial; background: transparent;">
+									</div>
+									<div style="width: 220px; margin: auto;">
+										<h6 class="floating-label">E-mail ID</h6>
+										<input type="text" class="form-control float-start" id="ans1" placeholder="E-mail ID" style="display: inline-block; height: 25px; font-size: 14px; width: initial; background: transparent;">
+									</div>
+									<div style="width: 220px; margin: auto; padding-right: 20px;">
+										<h6 class="floating-label">Role</h6>
+										<select class="form-control float-select" style="background: transparent; color: #979797;">
+										   <option value="" disabled selected style="color: transparent; height: 0;">Role</option>
+												    <option value="Delivery">Delivery</option>
+												    <option value="Packing">Packing</option>
+												    <option value="Cashier">Cashier</option>
+										  </select>
+									</div>
+									<div style="width: 290px; margin-top: 10px; margin-bottom: 10px; margin-left: 0;">
+										<div class="remove-extra" style="display: inline-block; border: solid 1px #979797; border-radius: 10px !important; height: 20px; width: 20px; cursor: pointer; visibility: hidden;	">
+												<button type="button" class="btn btn-default trash" style="margin: auto; width: 16px; height: 7px; background: transparent;"><hr style="height: 2px; width: 7px; margin-bottom: 1px; background:  #979797;"></button>
+											</div>
+									 	<div style="display: inline-block; margin-left: 10px;">
+										 	<h6 class="floating-label">Activity</h6>
+											<select class="form-control float-select" style="background: transparent; color: #979797;">
+											   <option value="" disabled selected style="color: transparent; height: 0;">Activity</option>
+												    <option value="Delivery">Delivery</option>
+												    <option value="Packing">Packing</option>
+												    <option value="Cashier">Cashier</option>
+											 </select>
+										</div>
+										<div style="display: inline-block; margin-left: 30px;">
+										 	<h6 class="floating-label">Pay (hourly)</h6>
+										 	<h6 style="display: inline-block; margin-top: 0;">$ </h6>
+											<input type="text" class="form-control float-start" id="ans1" placeholder="Pay(hourly)" style="width: 80px; display: inline-block; margin-left: 15px; height: 25px; font-size: 14px; background: transparent;">
+										</div>
+									</div>
+									<span style="display: none;">
+										<div class="cost">
+											<div class="remove-extra" style="display: inline-block; border: solid 1px #979797; border-radius: 10px !important; height: 20px; width: 20px; cursor: pointer;">
+												<button type="button" class="btn btn-default trash" style="margin: auto; width: 16px; height: 7px; background: transparent;"><hr style="height: 2px; width: 7px; margin-bottom: 1px; background:  #979797;"></button>
+											</div>
+										 	<div style="display: inline-block; margin-left: 10px;">
+												<select class="form-control" style="color: #979797; background: transparent;">
+													<option value="" disabled selected style="color: transparent; height: 0;">select</option>
+												    <option value="Delivery">Delivery</option>
+												    <option value="Packing">Packing</option>
+												    <option value="Cashier">Cashier</option>
+												 </select>
+											</div>
+											<div style="display: inline-block; margin-left: 30px;">
+											 	<h6 style="display: inline-block; margin-top: 0;">$ </h6>
+												<input type="text" class="form-control" id="ans1" placeholder="enter" style="width: 80px; display: inline-block; margin-left: 15px; height: 25px; font-size: 14px; background: transparent;">
+											</div>
+										</div>
+									</span>
+								</form>
+								<button class="actionButton add-cost" style="margin-left: 50px;">+ Add Activity</button> 
+							</div>
+						</span>
+					</span>
+					<button id="add-more">+<br>add more</button>
+					<div>
+						<button type="button" class="btn btn-default close-add" style="background-color: white; height: 30px; width: 100px;margin-top: 10px; font-size: 14px !important;">Cancel</button>
+						<button type="button" class="btn btn-default close-add" style="background-color: #f3ac24; height: 30px; width: 100px; border-radius: 4px; color: white !important; margin-top: 10px;">Invite</button>
+					</div>
+				</div>
+			</div>
+			<div id="crew-det">
+					<div style=" height: calc(100% - 50px); overflow-y: auto;">
+						<div class="opener detail-view" style="position: absolute; left: 20px; top: 20px" id="det-close"><</div>
+						<div class="opener edit-details" style="position: absolute; left: 20px; top: 20px" id="edit-close">X</div>
+						<img src="propic.jpg" id="member-pic"><br>
+						<h5 id="member-name" style="color: #4a4a4a;">Vidya Bhushan</h5>
+						<span class="detail-view">
+							<h5 style="color: #4a4a4a;">
+								<span id="member-sex">Male</span>
+								<div class="oval"></div>
+								<span id="member-status">Active</span>
+							</h5>
+							<table class="table" id="detail-table" style=" margin:auto; margin-top: 20px; font-size: 13px; color: #4a4a4a; width: 40%;">
+						    	<tr>
+						    		<td><h6>DOB</h6></td>
+						    		<td>15 Aug 1990</td>
+						    	</tr>
+						    	<tr>
+						    		<td><h6>DOJ</h6></td>
+						    		<td>10 Jan 2015</td>
+						    	</tr>
+						    	<tr></tr>
+						    	<tr></tr>
+						    	<tr></tr>
+						    	<tr>
+						    		<td><h6>Emp ID</h6></td>
+						    		<td>4562</td>
+						    	</tr><tr>
+						    		<td><h6>ID No</h6></td>
+						    		<td>SDF562H</td>
+						    	</tr><tr>
+						    		<td><h6>SSN</h6></td>
+						    		<td>456-23-6677</td>
+						    	</tr>
+						    	<tr></tr>
+						    	<tr></tr>
+						    	<tr></tr>
+						    	<tr>
+						    		<td><h6>Activities</h6></td>
+						    		<td id="activity">Delivery</td>
+						    	</tr>
+						    	<tr>
+						    		<td><h6>Remarks</h6></td>
+						    		<td>High Performer</td>
+						    	</tr>
+						    	<tr>
+						    		<td><h6>Avg Delivery</h6></td>
+						    		<td>12 per day</td>
+						    	</tr>
+						    	<tr>
+						    		<td><h6>Duration</h6></td>
+						    		<td>10 hrs day</td>
+						    	</tr>
+						    	<tr></tr>
+						    	<tr></tr>
+						    	<tr></tr>
+						    	<tr>
+						    		<td><h6>Crew Rating</h6></td>
+						    		<td>500</td>
+						    	</tr>
+						    	<tr>
+						    		<td><h6>Mobile No.</h6></td>
+						    		<td>+1 8527250263</td>
+						    	</tr>
+						    	<tr>
+						    		<td><h6>E-mail</h6></td>
+						    		<td>bnji@vhin.ci</td>
+						    	</tr>
+							</table>
+						</span>
+						<div class="edit-details">
+							<form id="detail-edit" style="text-align: left; padding-top: 0;">
+								<div style="width: 250px; margin: auto;">
+									<h6>Role</h6>
+									<select class="form-control">
+									    <option value="Delivery">Delivery Boy</option>
+									    <option value="Manager">Manager</option>
+									    <option value="Associate">Associate</option>
+									  </select>
+									 <h6>Status</h6>
+									<select class="form-control">
+									    <option>Active</option>
+									    <option>Dormant</option>
+									  </select>
+								</div>
+								<div style="width: 300px; margin: auto; margin-bottom: 10px;">
+									<div style="display: inline-block; border: solid 1px #979797; border-radius: 10px !important; height: 20px; width: 20px; cursor: pointer; visibility: hidden;">
+										<button type="button" class="btn btn-default trash" style="margin: auto; width: 16px; height: 7px;"><hr style="height: 2px; width: 7px; margin-bottom: 1px; background:  #979797;"></button>
+										</div>
+								 	<div style="display: inline-block; margin-left: 10px;">
+									 	<h6>Activity</h6>
+										<select class="form-control">
+										    <option value="Delivery">Delivery</option>
+										    <option value="Packing">Packing</option>
+										    <option value="Cashier">Cashier</option>
+										 </select>
+									</div>
+									<div style="display: inline-block; margin-left: 50px;">
+									 	<h6>Pay (hourly)</h6>
+									 	<h6 style="display: inline-block; margin-top: 0;">$ </h6>
+										<input type="text" class="form-control" id="ans1" value="5" style="width: 80px; display: inline-block; margin-left: 15px; height: 25px; font-size: 14px;">
+									</div>
+								</div>
+								<span style="display: none;">
+									<div class="cost">
+										<div class="remove-extra" style="display: inline-block; border: solid 1px #979797; border-radius: 10px !important; height: 20px; width: 20px; cursor: pointer;">
+											<button type="button" class="btn btn-default trash" style="margin: auto; width: 16px; height: 7px;"><hr style="height: 2px; width: 7px; margin-bottom: 1px; background:  #979797;"></button>
+										</div>
+									 	<div style="display: inline-block; margin-left: 10px;">
+											<select class="form-control" style="color: #979797;">
+												<option value="" disabled selected>select</option>
+											    <option value="Delivery">Delivery</option>
+											    <option value="Packing">Packing</option>
+											    <option value="Cashier">Cashier</option>
+											 </select>
+										</div>
+										<div style="display: inline-block; margin-left: 50px;">
+										 	<h6 style="display: inline-block; margin-top: 0;">$ </h6>
+											<input type="text" class="form-control" id="ans1" placeholder="enter" style="width: 80px; display: inline-block; margin-left: 15px; height: 25px; font-size: 14px;">
+										</div>
+									</div>
+								</span>
+							</form>
+							<button class="actionButton add-cost">+ Add Activity</button> 
+						</div>
+					</div>
+					<div style="height: 50px; background: white;">	
+						<div style="float: right; margin-right: 20px;" class="detail-view">
+							<button type="button" class="btn btn-default trash" id="prompt-del"  data-toggle="modal" data-target="#deleteRole"><span class="glyphicon glyphicon-trash" style="font-size: 13px; color: black;"></span></button>
+							<button type="button" class="btn btn-default trash" id="open-edit"><span class="glyphicon glyphicon-pencil" style="font-size: 13px; color: black;"></span></button>
+						</div>
+						<div class="edit-details"><button type="button" class="btn btn-default" style="background-color: #f3ac24; height: 30px; color: white !important; margin-top: 10px;" onclick="$('#edit-close').click();">Save</button></div>
+					</div>
+			</div>
+				<div id="notifications">
+					<button id="expandButton" onclick="expand()"><<</button>
+					<ul class="nav nav-pills nav-justified" id="notificationNav">
+					  <li role="presentation" class="active"><a href="#" id="activeWarn" style="color: white">Warnings</a></li>
+					  <li role="presentation"><a href="#" id="activeNotify">Notifications</a></li>
+					</ul>
+					<br><br>
+		  			<div class="dropdown">
+						  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						  	<span  id="selected">Open</span>
+						    <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						    <li><a href="#" id="option">Close</a></li>
+						  </ul>
+					</div>
+					<br><br>
+					<div id="warn">
+						<div class="floating opend">
+							<ul class="inline firstHalf">
+								<span class="time">6:22 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Vidya has not acknowledge order for > 5 min<br>
+									<button class="actionButton">Resolve</button>
+								</li><br><br>
+								<span class="time">1:22 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Ravi has started his shift for delivery at 1:22 pm<br>
+									<button class="actionButton">Approve</button> 
+									<span style="font-size: 12px; cursor: pointer;">Reject</span>
+								</li><br><br>
+							</ul>
+							<div class="inline secondHalf">
+								<ul class="inline firstHalf">
+								<span class="time">10: 45 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Order #4523 has been delayed by Bhushan<br>
+									<button class="actionButton">Send Reminder</button>
+								</li><br><br>
+								<span class="time">8:20 am</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Gopi has started his shift for cooking at 8:20 am<br>
+									<h6>Leave a comment</h6>
+									<textarea placeholder="shop is closed for morning half today"></textarea><br>
+									<button class="actionButton">OK</button> 
+									<span style="font-size: 12px; cursor: pointer;">Cancel</span>
+								</li><br><br>
+								</ul>
+							</div>
+						</div>
+						<div class="floating closed">
+							<ul class="inline firstHalf">
+								<span class="time">6:22 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Vidya has not acknowledge order for > 5 min<br>
+									<button class="actionButton" id="acceptedButton" disabled>Resolve</button>
+									<span class="glyphicon glyphicon-ok-circle"></span>
+								</li><br><br>
+								<span class="time">1:22 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Ravi has started his shift for delivery at 1:22 pm<br>
+									<button class="actionButton" id="acceptedButton" disabled>Approve</button>
+									<span class="glyphicon glyphicon-ok-circle"></span>
+								</li><br><br>
+							</ul>
+							<div class="inline secondHalf">
+								<ul class="inline firstHalf">
+									<span class="time">10: 45 pm</span><br>
+									<span class="glyphicon circle"></span>
+									<li>Order #4523 has been delayed by Bhushan<br>
+										<button class="actionButton" id="acceptedButton" disabled>Send Reminder</button>
+										<span class="glyphicon glyphicon-ok-circle"></span>
+									</li><br><br>
+									<span class="time">8:20 am</span><br><span class="glyphicon circle"></span>
+									<li>Gopi has started his shift for cooking at 8:20 am<br>
+										<h6>Leave a comment</h6>
+										<textarea placeholder="shop is closed for morning half today" readonly></textarea><br>
+										<button class="actionButton" id="acceptedButton">OK</button>
+										<span class="glyphicon glyphicon-ok-circle"></span>
+									</li><br><br>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="not">
+						<div class="floating opend">
+							<ul class="inline firstHalf">
+								<span class="time">6:22 pm</span><br>
+								<span class="glyphicon circleGreen"></span>
+								<li>Vidya has not acknowledge order for > 5 min</li><br><br>
+								<span class="time">1:22 pm</span><br>
+								<span class="glyphicon circleGreen"></span>
+								<li>Ravi has started his shift for delivery at 1:22 pm<br></li><br><br>
+							</ul>
+							<div class="inline secondHalf">
+								<ul class="inline firstHalf">
+									<span class="time">10: 45 pm</span><br>
+									<span class="glyphicon circleGreen"></span>
+									<li>Order #4523 has been delayed by Bhushan</li><br><br>
+									<span class="time">8:20 am</span><br>
+									<span class="glyphicon circleGreen"></span>
+									<li>Gopi has started his shift for cooking at 8:20 am</li><br><br>
+								</ul>
+							</div>
+						</div>
+						<div class="floating closed">
+							<ul class="inline firstHalf">
+								<span class="time">6:22 pm</span><br>
+								<span class="glyphicon circleGreen"></span>
+								<li>Order #4573 asigned to Mohan succesfully</li><br><br>
+								<span class="time">1:22 pm</span><br>
+								<span class="glyphicon circleGreen"></span>
+								<li>Ravi has started his shift for delivery at 1:22 pm</li><br><br>
+							</ul>
+							<div class="inline secondHalf">
+								<ul class="inline firstHalf">
+									<span class="time">10: 45 pm</span><br>
+									<span class="glyphicon circleGreen"></span>
+									<li>Order # 34634523 acknolwledged by Bhushan</li><br><br>
+									<span class="time">8:20 am</span><br><span class="glyphicon circleGreen"></span>
+									<li>Gopi has started his shift for cooking at 8:20 am</li><br><br>
+								</ul>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script type="text/javascript" src=script.js></script>
+</body>
+</html>
+

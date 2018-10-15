@@ -1,0 +1,240 @@
+html{
+	height: 100%;
+	width: 100%;
+}
+body{
+	height: 100%;
+	overflow: hidden;
+	background-image: url('back.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+  font-family: OpenSans !important;
+}
+h4, h5{
+	text-align: center;
+  font-family: OpenSans !important; 
+}
+h6{
+	padding-top: 25px;
+}
+form{
+	width: 80%;
+	padding-top: 10px;
+	margin: auto;
+}
+#logoDiv{
+	width: 100%;
+	background: white;
+}
+#logo{
+	max-width: 100px;
+	margin: auto;
+	padding: 4% 0;
+	width: 100%;
+}
+#pad{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+.map{
+	height: 75%;
+}
+#login{
+	margin: auto;
+	margin-top: 5%;
+	height: 430px;
+	width: 400px;
+	padding: 10px;
+	background: white;
+	border-radius: 4px;
+	box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.btn{
+	padding: 0;
+}
+.flag{
+	height: 25px;
+	padding: 0;
+}
+#setPad{
+	min-width: 8px;
+}
+#caret{
+	margin-left: 10px;
+}
+#forgot{
+	margin-left: 100px;
+	color: blue;
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: none !important;
+}
+a:visited{
+	text-decoration: none;
+}
+#sub, #confirm, #pro{
+	margin-top: 25px;
+	width: 100%;
+	height: 45px;
+	color: white;
+	background: orange;
+}
+.gray{
+	color: #666666 !important;
+}
+#resend{
+	text-align: center; 
+	padding-top: 0; 
+	cursor: wait; 
+	width: 80%;
+	color: #666666 ;
+}
+#confirm{
+	height: 50px;
+}
+#remember{
+	width: 120px;
+	margin-right: 0;
+	padding-right: 0;
+	display: inline
+}
+#checkPad{
+	padding-top: 30px;
+}
+#forgotHead{
+	display: inline;
+}
+#phone{
+	height: 38px;
+	padding-left: 25px;
+	font-size: 16px;
+	border-left: 0
+}
+#hide, #hideNew{
+	height: 38.5px;
+	font-size: 16px;
+	background: none; 
+	border-left:0;  
+	outline: none;
+}
+#hideNew{
+	height: 36px;
+	cursor: default;
+}
+#key{
+	height: 23.1px;
+}
+#enter1, #enter2{
+	font-size: 12px; 
+	color: red;
+}
+#ans1, #ans2{
+	border-color: red;
+}
+.tool{
+    position: relative !important;
+}
+
+.tool .tooltiptext {
+    visibility: hidden !important;
+    width: 160px !important;
+    font-size: 12px;
+    background-color:#ffcfbe;
+    color: #4a4a4a;
+    border-radius: 6px !important;
+    padding: 5px !important;
+    position: absolute !important;
+    z-index: 1 !important;
+    top: -25px !important;
+    right: 110% !important;
+}
+
+.tool .tooltiptext::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 100% !important;
+    margin-top: -5px !important;
+    border-width: 5px !important;
+    border-style: solid !important;
+    border-color: transparent transparent transparent #ffcfbe !important;
+}
+.tool:hover .tooltiptext {
+    visibility: visible !important;
+}
+.item {
+    position: relative;
+    float: left;
+    height: 80px;
+    margin-left: 80px;
+}
+
+.item h6 {
+	text-align: center;
+    position: absolute;
+    margin-top: 0;
+    padding-top: 10px;
+    width: 120%;
+}
+
+svg {
+   -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    height: 40px;
+    width: 40px;
+}
+
+.circle_animation {
+  stroke-dasharray: 75.36; /* this value is the pixel circumference of the circle */  stroke-dashoffset: 75.36;
+  transition: all 1s linear;
+}
+@media only screen and (max-width: 420px){
+	#login{
+		margin-top: 100px;
+		width: 95%;
+	}
+	#forgot{
+		margin-left: 70px;
+	}
+}
+@media only screen and (max-width: 380px){
+	#remember{
+		margin-right: 100px;
+	}
+	#forgot{
+		display: block;
+		margin-top: 15px;
+		margin-left: 0;
+	}
+}
+@media only screen and (max-width: 330px){
+	#login{
+		margin-top: 30px;
+		width: 95%;
+	}
+}
+@media only screen and (max-width: 321px){
+	#login{
+		margin-top: 10px;
+		width: 95%;
+	}
+	h6{
+		padding-top: 20px;
+	}
+	form{
+		padding: 0;
+	}
+	#phone{
+		padding-left: 0;
+	}
+	#confirm{
+		height: 40px;
+	}
+	#pro{
+		margin-top: 0;
+	}
+}

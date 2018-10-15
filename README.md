@@ -1,2 +1,29 @@
-# web-app
-D-care is a product through which a company or store who deals with delivery can take care of their deliveries. D-care was inspired by the thought of providing a complete delivery solution. The web app is for the vendor or the admin and the crew members will have the iOS or the android mobile application. While the web and the iOS applications are ready, there is still work going on the android application. Once that is complete the product will be rolled out in the market. The mobile applications and the web application all work hand in hand and are real time and well synchronised. 
+# README #
+
+This README would normally document whatever steps are necessary to get your application up and running.
+
+### What is this repository for? ###
+
+* Quick summary
+* Version
+* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+
+### How do I get set up? ###
+
+* Summary of set up
+* Configuration
+* Dependencies
+* Database configuration
+* How to run tests
+* Deployment instructions
+
+### Contribution guidelines ###
+
+* Writing tests
+* Code review
+* Other guidelines
+
+### Who do I talk to? ###
+
+* Repo owner or admin
+* Other community or team contact

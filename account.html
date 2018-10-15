@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="style1.css">
+	<link rel=icon href="favicon_2.ico">
+	<meta name='viewport' content="width=device-width, height=device-height, initial-scale=1">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <h4>Terms & Conditions</h4>
+			<h6>Please read this agreement carefully to ensure that you understand each provision.<br><br>1. Use of Our Service<br><br>Our Service in a Snapshot. Techarchies operates an online design platform and media licensing service that empowers our users, members, artists, designers, photographers and others to design and collaborate. We provide ready-made media and content that is licensable for use in accordance with our various licenses.<br><br>Eligibility. You may use the Service only if you can form a binding contract with Techarchies, and only in compliance with this Agreement and all applicable local, state, national, and international laws, rules, and regulations.  You must be 13 years old or older to use or access the Service, unless you are under 13 years old and your use of the Service is directly supervised by your parent or guardian or another authorized adult (e.g., a teacher) who agrees to be bound by this Agreement.  Any use or access to the Service by anyone under 13 who is not directly supervised by an adult is strictly prohibited and in violation of this Agreement.  The Service may not be available to any Users previously removed from the Service by Techarchies. By using the Service, you represent and warrant that you have the full right, power and authority to enter into this Agreement and to fully perform all of your obligations hereunder. You further represent and warrant that you are under no legal disability or contractual restriction that prevents you from entering into this Agreement.<br><br>License to use the Techarchies Service. Subject to the terms and conditions of this Agreement, you are hereby granted a non-exclusive, limited, non-transferable, freely revocable license to use the Service and as permitted by the features of the Service. Techarchies reserves all rights not expressly granted herein in the Service and the Techarchies Content (as defined below). Techarchies may terminate this license at any time for any reason or no reason.<br><br>Additional terms may apply for any content that you download from or upload to the Service. Any such additional terms will be made available to you prior to initiating any applicable uploads or downloads.</h6>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Decline</button>
+          <button class="actionButton" id="acceptButton"  data-dismiss="modal">Accept</button> 
+        </div>
+      </div>
+    </div>
+  	</div>
+  	<div class="modal fade" id="deleteRole" role="dialog" style="margin-left: calc(50% - 300px); margin-top: 100px;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" style="width: 600px">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+        	<h5>Confirm<br><br>This will delete the role. Are you sure you want to continue?</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button class="actionButton confirm-delete"  data-dismiss="modal">OK</button> 
+        </div>
+      </div>
+    </div>
+  	</div>
+  	<div class="modal fade" id="deleteActivity" role="dialog" style="margin-left: calc(50% - 300px); margin-top: 100px;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" style="width: 600px">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+        	<h5>Confirm<br><br>This will delete the activity. Are you sure you want to continue?</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button class="actionButton confirm-delete"  data-dismiss="modal">OK</button> 
+        </div>
+      </div>
+    </div>
+  	</div>
+	<div class="row">
+		<div class="col-lg-2">
+			<ul class="nav nav-pills nav-stacked">
+				<div class="container-fluid">
+				    <div class="navbar-header">
+				      <a class="navbar-brand" href="#"><img alt="Brand" src="unnamed.png" class="img-responsive" id="logo"></a>
+				    </div>
+		  		</div>
+		  		<li role="presentation" id="name"><img src="download.png" class="img-responsive" id="setHeight">
+		  			<a href="#" id="user" class="unactive">Jonathan</a>
+		  			<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Admin
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a href="#">Employ</a></li>
+					    <li><a href="#">Another action</a></li>
+					  </ul>
+					</div>
+		  		</li>
+			  <li role="presentation" class="setPad"><a href="orders.html" class="unactive"><span class="glyphicon glyphicon-book unactiveIcon"></span> Orders</a></li>
+			  <li role="presentation" class="setPad"><a href="reports.html" class="unactive"><span class="glyphicon glyphicon-signal unactiveIcon"></span> Reports</a></li>
+			  <li role="presentation" class="setPad"><a href="crew.html" class="unactive"><span class="glyphicon glyphicon-user unactiveIcon"></span> Crew</a></li>
+			  <li role="presentation" class="setPad"><a href="payments.html" class="unactive"><span class="glyphicon glyphicon-sort unactiveIcon"></span> Payments</a></li>
+			  <li role="presentation" class="active setPad"><a href="account.html" id="active"><span class="glyphicon glyphicon-user activeIcon"></span> Account</a></li>
+			  <a href="#" id="help">Need Help?</a>
+			</ul>
+		</div>
+		<div class="col-lg-10">
+			<div class="page-header">
+  				<h3>
+  					<span id="mainTitle" class="expand-hide">Account</span>
+  					<div class="input-group expand-hide" style="height: 36px; width: 150px; margin-left: 700px; float: left;">
+						 <span class="input-group-btn">
+						 	<button class="btn btn-default add-border" type="button" style="height: 36px; border-right: 0;"><span class="glyphicon glyphicon-search" style="font-size: 15px; color: #4a4a4a"></span></button>
+						 </span>
+					      <input type="text" class="form-control" id=search-text style="height: 36px; border-left: 0; outline: none; font-size: 14px;" placeholder="Search" >
+					</div><!-- /input-group -->
+  					<span class="glyphicon glyphicon-time" onclick="notification()"></span>
+  				</h3>
+			</div>
+			<div class="container-fluid expand-hide" id="main">
+				<ul class="nav nav-pills" id="innerNav">
+				  <li role="presentation" class="active"><a href="#" class="innerActive" id="account-add">Address</a></li>
+				  <li role="presentation"><a href="#" class="unactive" id="account-role">Roles & Activities</a></li>
+				  <li role="presentation"><a href="#" class="unactive" id="account-change">Change Password</a></li>
+				  <li role="presentation"><a href="#" class="unactive" id="account-more">More</a></li>
+				</ul>
+				<hr>
+				<div id="address" class="tabs">
+					<div id="in1" class="inline">
+						<h4>Welcome to admin panel</h4>
+						  <table class="table">
+						    	<tr>
+						    		<td>Name of the company</td>
+						    		<td>Baskin Robbins</td>
+						    	</tr>
+						    	<tr>
+						    		<td>Company address</td>
+						    		<td>6165 Arlington Blvd,</td>
+						    	</tr>
+						    	<tr>
+						    		<td></td>
+						    		<td>Falls Church, VA 22044</td>
+						    	</tr>
+						    	<tr>
+						    		<td>Business ID</td>
+						    		<td>AENPEU2314</td>
+						    	</tr>
+						  </table>
+						  <span>
+							 <h5 id="accepted"><span class="glyphicon glyphicon-ok-circle"></span> You have accepted the <a href=# style="color: #4990e2;" data-toggle="modal" data-target="#myModal" onclick="$('.modal-footer').hide()"> terms & conditions</a></h5>
+							 <span id="accept">
+							  <h5 style="margin-top: 50px; text-align: center;">
+							  	<div class="checkbox">
+		  							<label><input type="checkbox" value="" id="termsCheckbox" onclick="clicked()">&nbsp; &nbsp; I agree the <a href=# style="color: #4990e2;" data-toggle="modal" data-target="#myModal"onclick="$('.modal-footer').show()"> terms & conditions</a></label>
+								</div>
+								</h5>
+								<button id="acceptedButton" onclick="termsAccepted()">OK</button>
+							</span>
+						</div>
+						<div id="in2" class="inline">
+							<h5>Please review your company details</h5>
+							<h5>Read and accept the terms & conditions</h5><br>
+							<h5>If the details are incorrect,</h5>
+							<h5><a href="#" style="color: #4990e2;">Contact Us</a></h5>
+						</div>
+					</div>
+					<div id="change-pass" class="tabs">
+						<div id="change-in1" class="inline">
+							<form style="width: 75%; padding-top: 0;">
+							    <h6 class="gray">Current Password</h6>
+							   <div class="input-group" style="height: 36px;">
+							      <input type="Password" class="form-control" id=pass style="height: 36px; border-right: 0; outline: none;">
+							      <span class="input-group-btn">
+							        <button class="btn btn-default add-border" type="button" id="hide" style="height: 36px;"><span class="glyphicon glyphicon-eye-close" id="change"></span></button>
+							      </span>
+							    </div><!-- /input-group -->
+							   	<h6 class="gray">New Password</h6>
+							   <div class="input-group tool" style="height: 36px;">
+							      <input type="Password" class="form-control" id=newpass style="height: 36px; border-right: 0; outline: none;" oninput="check()">
+							      	<span class="tooltiptext">Password should contain<br>
+								      	<span id="atleast">min 8 chars, &nbsp;<span class="glyphicon" id="tick1"></span></span>
+								      	<span id="special"><br>atleast one special char, &nbsp;<span class="glyphicon" id="tick2"></span></span>
+								      	<span id="capital"><br>one capital letter &nbsp;<span class="glyphicon" id="tick3"></span></span>
+								      	<span id="number"><br>and one number &nbsp;<span class="glyphicon" id="tick4"></span></span>
+							     	</span>
+							      <span class="input-group-btn">
+							        <button class="btn btn-default add-border" type="button" id="hideNew" disabled><span class="glyphicon glyphicon-remove-circle" id="change2"></span></button>
+							      </span>
+							    </div><!-- /input-group -->
+							    <h6 class="gray">Confirm Password</h6>
+							   <div class="input-group" style="height: 36px;">
+							      <input type="Password" class="form-control" id=conpass style="height: 36px; border-right: 0; outline: none;" oninput="check2()">
+							      <span class="input-group-btn">
+							        <button class="btn btn-default add-border" type="button" id="hideNew" disabled><span class="glyphicon glyphicon-remove-circle" id="change3"></span></button>
+							      </span>
+							    </div><!-- /input-group -->
+							     <button class=actionButton id="confirm">Confirm</button>
+							</form>
+						</div>
+						<div id="in2" class="inline">
+							<h5 style="color: #4a4a4a">Password should contain min 8 chars</h5><br>
+							<h5 style="color: #4a4a4a">Should have atleast one special char,<br>one capital letter and one number </h5>
+						</div>
+					</div>
+					<div id="more" class="tabs">
+						<div id="in1" class="inline">
+						  	<table class="table" style="margin-top: 20px; font-size: 13px; color: #4a4a4a;">
+						    	<tr>
+						    		<td>My Language</td>
+						    		<td>
+						    			<select class="form-control" id="lang">
+										    <option>English</option>
+										    <option>German</option>
+										    <option>French</option>
+										    <option>Espanol</option>
+										  </select>
+						    		</td>
+						    	</tr>
+						    	<tr>
+						    		<td>My Plan</td>
+						    		<td>
+						    			<select class="form-control" id="lang" style="float: left;">
+										    <option>Gold</option>
+										    <option>Silver</option>
+										    <option>Platinum</option>
+										  </select>
+										  <a id="rate-chart" href="#">Rate chart</a>
+						    		</td>
+						    	</tr>
+						    	<tr>
+						    		<td>Shift start auto approval</td>
+						    		<td>
+						    			<select class="form-control" id="lang">
+										    <option>Off</option>
+										    <option>On</option>
+										  </select>
+						    		</td>
+						    	</tr>
+						    	<tr>
+						    		<td>Security <br>Question 1</td>
+						    		<td>
+						    			<select class="form-control" style="width: 200px;" id="lang">
+										    <option>What is your school name?</option>
+										    <option>What is your mother's name?</option>
+										    <option>Something else here</option>
+										  </select>
+						    		</td>
+						    	</tr>
+						    	<tr>
+						    		<td>Answer</td>
+						    		<td><input type="text" class="form-control" id="ans1" oninput="check3()" value="DPS"></td>
+						    	</tr>
+						    	<tr>
+						    		<td>Security <br>Question 2</td>
+						    		<td>
+						    			<select class="form-control" style="width: 200px;" id="lang">
+										    <option>What is your first pet name?</option>
+										    <option>Who is your role model?</option>
+										    <option>Something else here</option>
+										  </select>
+						    		</td>
+						    	</tr>
+						    	<tr>
+						    		<td>Answer</td>
+						    		<td> <input type="text" class="form-control" id="ans2" oninput="check3()" value="Koala"></td>
+						    	</tr>
+						    </table>
+				    		<div class="button-data">
+				    			<button type="button" class="btn btn-default" style="float: left; margin-top: 0;">Cancel</button>
+				    			<button style="display: inherit; margin-top: 0;">Save</button>
+				    		</div>
+						</div>
+					</div>
+					<div id="role" class="tabs">
+						<div class="more-half">
+						<div id="more-in1" class="inline">
+						  	<h5 style="float: left;">Roles</h5>
+						  	<div class="input-group" style="height: 25px; width: 150px; margin-left: 100px; margin-top: 5px;">
+						      <input type="text" class="form-control" id=role-text style="height: 25px; border-right: 0; outline: none; font-size: 12px;" placeholder="Add new role" >
+						      <span class="input-group-btn">
+						        <button class="btn btn-default add-border" type="button" style="height: 25px; border-left: 0;" id="role-add">+</button>
+						      </span>
+							</div><!-- /input-group -->
+							<div style="float: left;" id="add-role">
+								<div class="rectangle" tabindex="0">
+									<h5>
+										<span class="role-tit">Manager</span><br>
+										<span class="down">&#709;</span>
+									</h5>
+									<span class="expand-role">
+										<h5>
+											<span class="role-tit">Manager</span>
+											<input type="text" class="form-control title-edit" value="Manager" style="display: none;"> 
+											<button type="button" class="btn btn-default edit activate-input"><span class="glyphicon glyphicon-pencil"></span></button><br>
+										</h5>
+										<h6>Auto approval<input type="checkbox" value="" class="auto-check"></h6>
+										<button type="button" class="btn btn-default trash" data-toggle="modal" data-target="#deleteRole"><span class="glyphicon glyphicon-trash"></span></button>
+									</span>
+								</div>
+								<div class="rectangle" tabindex="0">
+									<h5>
+										<span class="role-tit">Delivery Boy</span><br>
+										<span class="down">&#709;</span>
+									</h5>
+									<span class="expand-role">
+										<h5>
+											<span class="role-tit">Delivery Boy</span>
+											<input type="text" class="form-control title-edit" value="Delivery Boy"> 
+											<button type="button" class="btn btn-default edit activate-input"><span class="glyphicon glyphicon-pencil"></span></button><br>
+										</h5>
+										<h6>Auto approval<input type="checkbox" value="" class="auto-check"></h6>
+										<button type="button" class="btn btn-default trash" data-toggle="modal" data-target="#deleteRole"><span class="glyphicon glyphicon-trash"></span></button>
+									</span>
+								</div>
+								<div class="rectangle" tabindex="0">
+									<h5>
+										<span class="role-tit">Associate Manager</span><br>
+										<span class="down">&#709;</span>
+									</h5>
+									<span class="expand-role">
+										<h5>
+											<span class="role-tit">Associate Manager</span>
+											<input type="text" class="form-control title-edit" value="Associate Manager" style="display: none;"> 
+											<button type="button" class="btn btn-default edit activate-input"><span class="glyphicon glyphicon-pencil"></span></button><br>
+										</h5>
+										<h6>Auto approval<input type="checkbox" value="" class="auto-check"></h6>
+										<button type="button" class="btn btn-default trash" data-toggle="modal" data-target="#deleteRole"><span class="glyphicon glyphicon-trash"></span></button>
+									</span>
+								</div>
+								<div class="rectangle" tabindex="0">
+									<h5>
+										<span class="role-tit">Store Manager</span><br>
+										<span class="down">&#709;</span>
+									</h5>
+									<span class="expand-role">
+										<h5>
+											<span class="role-tit">Store Manager</span>
+											<input type="text" class="form-control title-edit" value="Store Manager" style="display: none;"> 
+											<button type="button" class="btn btn-default edit activate-input"><span class="glyphicon glyphicon-pencil"></span></button><br>
+										</h5>
+										<h6>Auto approval<input type="checkbox" value="" class="auto-check"></h6>
+										<button type="button" class="btn btn-default trash" data-toggle="modal" data-target="#deleteRole"><span class="glyphicon glyphicon-trash"></span></button>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div id="more-in2" class="inline">
+							<h6 style="text-align: center;">What is this?</h6><br>
+							<h6>Add roles that you currently have for your employees.</h6>
+							<h6>You may edit or delete by clicking down arrow anytime.</h6>
+						</div>
+					</div>
+					<hr style="width: 100%; height: 2px;">
+					<div class="more-half">
+						<div id="more-in1" class="inline">
+						  	<h5 style="float: left;">Activities</h5>
+						  	<div class="input-group" style="height: 25px; width: 150px; margin-left: 100px; margin-top: 5px;">
+						      <input type="text" class="form-control" id=activity-text style="height: 25px; border-right: 0; outline: none; font-size: 12px;" placeholder="Add new activity" >
+						      <span class="input-group-btn">
+						        <button class="btn btn-default add-border" type="button" style="height: 25px; border-left: 0;" id="activity-add">+</button>
+						      </span>
+							</div><!-- /input-group -->
+							<div style="float: left;" id="add-activity">
+								<div class="rectangle" tabindex="0">
+									<h5>
+										<span class="role-tit">Cleaning</span><br>
+										<span class="down">&#709;</span>
+									</h5>
+									<span class="expand-role">
+										<h5>
+											<span class="role-tit">Cleaning</span>
+											<input type="text" class="form-control title-edit" value="Cleaning" style="display: none;"> 
+											<button type="button" class="btn btn-default edit activate-input"><span class="glyphicon glyphicon-pencil"></span></button><br>
+										</h5>
+										<h6>Auto approval<input type="checkbox" value="" class="auto-check"></h6>
+										<button type="button" class="btn btn-default trash" data-toggle="modal" data-target="#deleteActivity"><span class="glyphicon glyphicon-trash"></span></button>
+									</span>
+								</div>
+								<div class="rectangle" tabindex="0">
+									<h5>
+										<span class="role-tit">Cooking</span><br>
+										<span class="down">&#709;</span>
+									</h5>
+									<span class="expand-role">
+										<h5>
+											<span class="role-tit">Cooking</span>
+											<input type="text" class="form-control title-edit" value="Cooking" style="display: none;"> 
+											<button type="button" class="btn btn-default edit activate-input"><span class="glyphicon glyphicon-pencil"></span></button><br>
+										</h5>
+										<h6>Auto approval<input type="checkbox" value="" class="auto-check"></h6>
+										<button type="button" class="btn btn-default trash" data-toggle="modal" data-target="#deleteActivity"><span class="glyphicon glyphicon-trash"></span></button>
+									</span>
+								</div>
+								<div class="rectangle" tabindex="0">
+									<h5>
+										<span class="role-tit">Cashier</span><br>
+										<span class="down">&#709;</span>
+									</h5>
+									<span class="expand-role">
+										<h5>
+											<span class="role-tit">Cashier</span>
+											<input type="text" class="form-control title-edit" value="Cashier" style="display: none;"> 
+											<button type="button" class="btn btn-default edit activate-input"><span class="glyphicon glyphicon-pencil"></span></button><br>
+										</h5>
+										<h6>Auto approval<input type="checkbox" value="" class="auto-check"></h6>
+										<button type="button" class="btn btn-default trash" data-toggle="modal" data-target="#deleteActivity"><span class="glyphicon glyphicon-trash"></span></button>
+									</span>
+								</div>
+								<div class="rectangle" tabindex="0">
+									<h5>
+										<span class="role-tit">Delivery</span><br>
+										<span class="down">&#709;</span>
+									</h5>
+									<span class="expand-role">
+										<h5>
+											<span class="role-tit">Delivery</span>
+											<input type="text" class="form-control title-edit" value="Delivery" style="display: none;"> 
+											<button type="button" class="btn btn-default edit activate-input"><span class="glyphicon glyphicon-pencil"></span></button><br>
+										</h5>
+										<h6>Auto approval<input type="checkbox" value="" class="auto-check"></h6>
+										<button type="button" class="btn btn-default trash" data-toggle="modal" data-target="#deleteActivity"><span class="glyphicon glyphicon-trash"></span></button>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div id="more-in2" class="inline">
+							<h6 style="text-align: center;">What is this?</h6><br>
+							<h6>Add activities/jobs that you currently have for your employees.</h6>
+							<h6>You may edit or delete by clicking down arrow anytime.</h6>
+						</div>
+					</span>
+					</div>
+					</div>
+				</div>
+				<div id="notifications">
+					<button id="expandButton" onclick="expand()"><<</button>
+					<ul class="nav nav-pills nav-justified" id="notificationNav">
+					  <li role="presentation" class="active"><a href="#" id="activeWarn" style="color: white">Warnings</a></li>
+					  <li role="presentation"><a href="#" id="activeNotify">Notifications</a></li>
+					</ul>
+					<br><br>
+		  			<div class="dropdown">
+						  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						  	<span  id="selected">Open</span>
+						    <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						    <li><a href="#" id="option">Close</a></li>
+						  </ul>
+					</div>
+					<br><br>
+					<div id="warn">
+						<div class="floating opend">
+							<ul class="inline firstHalf">
+								<span class="time">6:22 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Vidya has not acknowledge order for > 5 min<br>
+									<button class="actionButton">Resolve</button>
+								</li><br><br>
+								<span class="time">1:22 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Ravi has started his shift for delivery at 1:22 pm<br>
+									<button class="actionButton">Approve</button> 
+									<span style="font-size: 12px; cursor: pointer;">Reject</span>
+								</li><br><br>
+							</ul>
+							<div class="inline secondHalf">
+								<ul class="inline firstHalf">
+								<span class="time">10: 45 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Order #4523 has been delayed by Bhushan<br>
+									<button class="actionButton">Send Reminder</button>
+								</li><br><br>
+								<span class="time">8:20 am</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Gopi has started his shift for cooking at 8:20 am<br>
+									<h6>Leave a comment</h6>
+									<textarea placeholder="shop is closed for morning half today"></textarea><br>
+									<button class="actionButton">OK</button> 
+									<span style="font-size: 12px; cursor: pointer;">Cancel</span>
+								</li><br><br>
+								</ul>
+							</div>
+						</div>
+						<div class="floating closed">
+							<ul class="inline firstHalf">
+								<span class="time">6:22 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Vidya has not acknowledge order for > 5 min<br>
+									<button class="actionButton" id="acceptedButton" disabled>Resolve</button>
+									<span class="glyphicon glyphicon-ok-circle"></span>
+								</li><br><br>
+								<span class="time">1:22 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Ravi has started his shift for delivery at 1:22 pm<br>
+									<button class="actionButton" id="acceptedButton" disabled>Approve</button>
+									<span class="glyphicon glyphicon-ok-circle"></span>
+								</li><br><br>
+							</ul>
+							<div class="inline secondHalf">
+								<ul class="inline firstHalf">
+									<span class="time">10: 45 pm</span><br>
+									<span class="glyphicon circle"></span>
+									<li>Order #4523 has been delayed by Bhushan<br>
+										<button class="actionButton" id="acceptedButton" disabled>Send Reminder</button>
+										<span class="glyphicon glyphicon-ok-circle"></span>
+									</li><br><br>
+									<span class="time">8:20 am</span><br><span class="glyphicon circle"></span>
+									<li>Gopi has started his shift for cooking at 8:20 am<br>
+										<h6>Leave a comment</h6>
+										<textarea placeholder="shop is closed for morning half today" readonly></textarea><br>
+										<button class="actionButton" id="acceptedButton">OK</button>
+										<span class="glyphicon glyphicon-ok-circle"></span>
+									</li><br><br>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="not">
+						<div class="floating opend">
+							<ul class="inline firstHalf">
+								<span class="time">6:22 pm</span><br>
+								<span class="glyphicon circleGreen"></span>
+								<li>Vidya has not acknowledge order for > 5 min</li><br><br>
+								<span class="time">1:22 pm</span><br>
+								<span class="glyphicon circleGreen"></span>
+								<li>Ravi has started his shift for delivery at 1:22 pm<br></li><br><br>
+							</ul>
+							<div class="inline secondHalf">
+								<ul class="inline firstHalf">
+									<span class="time">10: 45 pm</span><br>
+									<span class="glyphicon circleGreen"></span>
+									<li>Order #4523 has been delayed by Bhushan</li><br><br>
+									<span class="time">8:20 am</span><br>
+									<span class="glyphicon circleGreen"></span>
+									<li>Gopi has started his shift for cooking at 8:20 am</li><br><br>
+								</ul>
+							</div>
+						</div>
+						<div class="floating closed">
+							<ul class="inline firstHalf">
+								<span class="time">6:22 pm</span><br>
+								<span class="glyphicon circleGreen"></span>
+								<li>Order #4573 asigned to Mohan succesfully</li><br><br>
+								<span class="time">1:22 pm</span><br>
+								<span class="glyphicon circleGreen"></span>
+								<li>Ravi has started his shift for delivery at 1:22 pm</li><br><br>
+							</ul>
+							<div class="inline secondHalf">
+								<ul class="inline firstHalf">
+									<span class="time">10: 45 pm</span><br>
+									<span class="glyphicon circleGreen"></span>
+									<li>Order # 34634523 acknolwledged by Bhushan</li><br><br>
+									<span class="time">8:20 am</span><br><span class="glyphicon circleGreen"></span>
+									<li>Gopi has started his shift for cooking at 8:20 am</li><br><br>
+								</ul>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script type="text/javascript" src=script.js></script>
+</body>
+</html>
+

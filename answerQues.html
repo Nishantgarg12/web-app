@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Forgot Password</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel=icon href="favicon_2.ico">
+	<meta name='viewport' content="width=device-width, height=device-height, initial-scale=1">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style type="text/css">
+		#ans3{
+			border: 0;
+			border-bottom: 1px solid #979797;
+			border-radius: 0;
+		}
+		#login{
+			height: 480px;
+			margin-top: 3%;
+		}
+	</style>
+</head>
+<body>
+	<div class="page-header" id="pad">
+		<div class="container-fluid" id="logoDiv"><img src="unnamed.png" class="img-responsive" id="logo"></div>
+		<div class="container-fluid map">
+			<div id="login">
+				<h4>Forgot password</h4>
+				<form>
+					<h6 class="gray">Email ID or Mobile No.</h6>
+					<div class="input-group">
+				      <div class="input-group-btn" style="width: 60px">
+				        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 38.5px; cursor: default;" disabled><img src="ind.png" class="flag" id="selected"><span class="caret" id="caret"></span></button>
+				        <ul class="dropdown-menu" id="setPad">
+				          <li><a id="ind"><img src="ind.png" class="flag"></a></li>
+				          <li><a id="us"><img src="us.png" class="flag"></a></li>
+				        </ul>
+				      </div><!-- /btn-group -->
+				      <input type="No" class="form-control" id="phone" value="+91 8967612399" readonly>
+				    </div><!-- /input-group -->
+				   <h6 class="gray">Question 1</h6>
+					<h4 style="text-align: left; font-size: 16px;">What is your school name?</h4>
+					<div class="form-group">
+						<h6 class="gray">Answer</h6>
+					  <input type="text" class="form-control" id="ans3">
+					</div>
+				     <button type="button" class="btn btn-default" id="sub"><h6 style="padding-top:0; color: white;">Send OTP</h6></button>
+				</form>
+				<h6 style="text-align: center;">Remember password? <a style="color: blue;" href="index.html">Log In</a></h6>
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script type="text/javascript" src=script.js></script>
+</body>
+</html>
+

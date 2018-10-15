@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="style1.css">
+	<link rel=icon href="favicon_2.ico">
+	<meta name='viewport' content="width=device-width, height=device-height, initial-scale=1">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <h4>Terms & Conditions</h4>
+			<h6>Please read this agreement carefully to ensure that you understand each provision.<br><br>1. Use of Our Service<br><br>Our Service in a Snapshot. Techarchies operates an online design platform and media licensing service that empowers our users, members, artists, designers, photographers and others to design and collaborate. We provide ready-made media and content that is licensable for use in accordance with our various licenses.<br><br>Eligibility. You may use the Service only if you can form a binding contract with Techarchies, and only in compliance with this Agreement and all applicable local, state, national, and international laws, rules, and regulations.  You must be 13 years old or older to use or access the Service, unless you are under 13 years old and your use of the Service is directly supervised by your parent or guardian or another authorized adult (e.g., a teacher) who agrees to be bound by this Agreement.  Any use or access to the Service by anyone under 13 who is not directly supervised by an adult is strictly prohibited and in violation of this Agreement.  The Service may not be available to any Users previously removed from the Service by Techarchies. By using the Service, you represent and warrant that you have the full right, power and authority to enter into this Agreement and to fully perform all of your obligations hereunder. You further represent and warrant that you are under no legal disability or contractual restriction that prevents you from entering into this Agreement.<br><br>License to use the Techarchies Service. Subject to the terms and conditions of this Agreement, you are hereby granted a non-exclusive, limited, non-transferable, freely revocable license to use the Service and as permitted by the features of the Service. Techarchies reserves all rights not expressly granted herein in the Service and the Techarchies Content (as defined below). Techarchies may terminate this license at any time for any reason or no reason.<br><br>Additional terms may apply for any content that you download from or upload to the Service. Any such additional terms will be made available to you prior to initiating any applicable uploads or downloads.</h6>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Decline</button>
+          <button class="actionButton" id="acceptButton"  data-dismiss="modal">Accept</button> 
+        </div>
+      </div>
+    </div>
+  	</div>
+  	<div class="modal fade" id="deleteRole" role="dialog" style="margin-left: calc(50% - 300px); margin-top: 100px;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" style="width: 600px">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+        	<h5>Confirm<br><br>This will delete the role. Are you sure you want to continue?</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button class="actionButton" id="confirm-delete"  data-dismiss="modal">OK</button> 
+        </div>
+      </div>
+    </div>
+  	</div>
+	<div class="row">
+		<div class="col-lg-2">
+			<ul class="nav nav-pills nav-stacked">
+				<div class="container-fluid">
+				    <div class="navbar-header">
+				      <a class="navbar-brand" href="#"><img alt="Brand" src="unnamed.png" class="img-responsive" id="logo"></a>
+				    </div>
+		  		</div>
+		  		<li role="presentation" id="name"><img src="download.png" class="img-responsive" id="setHeight">
+		  			<a href="#" id="user" class="unactive">Jonathan</a>
+		  			<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Admin
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a href="#">Employ</a></li>
+					    <li><a href="#">Another action</a></li>
+					  </ul>
+					</div>
+		  		</li>
+			  <li role="presentation" class="setPad"><a href="#" class="unactive"><span class="glyphicon glyphicon-book unactiveIcon"></span> Orders</a></li>
+			  <li role="presentation" class="setPad"><a href="#" class="unactive"><span class="glyphicon glyphicon-signal unactiveIcon"></span> Reports</a></li>
+			  <li role="presentation" class="active setPad"><a href="crew.html" id="active"><span class="glyphicon glyphicon-user activeIcon"></span> Crew</a></li>
+			  <li role="presentation" class="setPad"><a href="#" class="unactive"><span class="glyphicon glyphicon-sort unactiveIcon"></span> Payments</a></li>
+			  <li role="presentation" class="setPad"><a href="account.html" class="unactive"><span class="glyphicon glyphicon-user unactiveIcon"></span> Account</a></li>
+			  <a href="#" id="help">Need Help?</a>
+			</ul>
+		</div>
+		<div class="col-lg-10">
+			<div class="page-header">
+  				<h3>
+  					<span id="mainTitle" class="expand-hide">Crew</span>
+  					<div class="input-group expand-hide" style="height: 36px; width: 150px; margin-left: 700px; float: left;" id="search-bar">
+						 <span class="input-group-btn">
+						 	<button class="btn btn-default add-border" type="button" style="height: 36px; border-right: 0;" id="role-add"><span class="glyphicon glyphicon-search" style="font-size: 15px; color: #4a4a4a"></span></button>
+						 </span>
+					      <input type="text" class="form-control" id=role-text style="height: 36px; border-left: 0; outline: none; font-size: 14px;" placeholder="Search" >
+					</div><!-- /input-group -->
+  					<span class="glyphicon glyphicon-time" onclick="notification()"></span>
+  				</h3>
+			</div>
+			<button class="btn-default expand-hide" type="button" id="add">+ Add</button>
+			<div class="expand-hide" id="empty">
+				<span class="glyphicon glyphicon-user" style="font-size: 35px;"></span>
+				<h4>Please add crew to get started</h4>
+			</div>
+				<div id="notifications">
+					<button id="expandButton" onclick="expand()"><<</button>
+					<ul class="nav nav-pills nav-justified" id="notificationNav">
+					  <li role="presentation" class="active"><a href="#" id="activeWarn" style="color: white">Warnings</a></li>
+					  <li role="presentation"><a href="#" id="activeNotify">Notifications</a></li>
+					</ul>
+					<br><br>
+		  			<div class="dropdown">
+						  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						  	<span  id="selected">Open</span>
+						    <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						    <li><a href="#" id="option">Close</a></li>
+						  </ul>
+					</div>
+					<br><br>
+					<div id="warn">
+						<div class="floating opend">
+							<ul class="inline firstHalf">
+								<span class="time">6:22 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Vidya has not acknowledge order for > 5 min<br>
+									<button class="actionButton">Resolve</button>
+								</li><br><br>
+								<span class="time">1:22 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Ravi has started his shift for delivery at 1:22 pm<br>
+									<button class="actionButton">Approve</button> 
+									<span style="font-size: 12px; cursor: pointer;">Reject</span>
+								</li><br><br>
+							</ul>
+							<div class="inline secondHalf">
+								<ul class="inline firstHalf">
+								<span class="time">10: 45 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Order #4523 has been delayed by Bhushan<br>
+									<button class="actionButton">Send Reminder</button>
+								</li><br><br>
+								<span class="time">8:20 am</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Gopi has started his shift for cooking at 8:20 am<br>
+									<h6>Leave a comment</h6>
+									<textarea placeholder="shop is closed for morning half today"></textarea><br>
+									<button class="actionButton">OK</button> 
+									<span style="font-size: 12px; cursor: pointer;">Cancel</span>
+								</li><br><br>
+								</ul>
+							</div>
+						</div>
+						<div class="floating closed">
+							<ul class="inline firstHalf">
+								<span class="time">6:22 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Vidya has not acknowledge order for > 5 min<br>
+									<button class="actionButton" id="acceptedButton" disabled>Resolve</button>
+									<span class="glyphicon glyphicon-ok-circle"></span>
+								</li><br><br>
+								<span class="time">1:22 pm</span><br>
+								<span class="glyphicon circle"></span>
+								<li>Ravi has started his shift for delivery at 1:22 pm<br>
+									<button class="actionButton" id="acceptedButton" disabled>Approve</button>
+									<span class="glyphicon glyphicon-ok-circle"></span>
+								</li><br><br>
+							</ul>
+							<div class="inline secondHalf">
+								<ul class="inline firstHalf">
+									<span class="time">10: 45 pm</span><br>
+									<span class="glyphicon circle"></span>
+									<li>Order #4523 has been delayed by Bhushan<br>
+										<button class="actionButton" id="acceptedButton" disabled>Send Reminder</button>
+										<span class="glyphicon glyphicon-ok-circle"></span>
+									</li><br><br>
+									<span class="time">8:20 am</span><br><span class="glyphicon circle"></span>
+									<li>Gopi has started his shift for cooking at 8:20 am<br>
+										<h6>Leave a comment</h6>
+										<textarea placeholder="shop is closed for morning half today" readonly></textarea><br>
+										<button class="actionButton" id="acceptedButton">OK</button>
+										<span class="glyphicon glyphicon-ok-circle"></span>
+									</li><br><br>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="not">
+						<div class="floating opend">
+							<ul class="inline firstHalf">
+								<span class="time">6:22 pm</span><br>
+								<span class="glyphicon circleGreen"></span>
+								<li>Vidya has not acknowledge order for > 5 min</li><br><br>
+								<span class="time">1:22 pm</span><br>
+								<span class="glyphicon circleGreen"></span>
+								<li>Ravi has started his shift for delivery at 1:22 pm<br></li><br><br>
+							</ul>
+							<div class="inline secondHalf">
+								<ul class="inline firstHalf">
+									<span class="time">10: 45 pm</span><br>
+									<span class="glyphicon circleGreen"></span>
+									<li>Order #4523 has been delayed by Bhushan</li><br><br>
+									<span class="time">8:20 am</span><br>
+									<span class="glyphicon circleGreen"></span>
+									<li>Gopi has started his shift for cooking at 8:20 am</li><br><br>
+								</ul>
+							</div>
+						</div>
+						<div class="floating closed">
+							<ul class="inline firstHalf">
+								<span class="time">6:22 pm</span><br>
+								<span class="glyphicon circleGreen"></span>
+								<li>Order #4573 asigned to Mohan succesfully</li><br><br>
+								<span class="time">1:22 pm</span><br>
+								<span class="glyphicon circleGreen"></span>
+								<li>Ravi has started his shift for delivery at 1:22 pm</li><br><br>
+							</ul>
+							<div class="inline secondHalf">
+								<ul class="inline firstHalf">
+									<span class="time">10: 45 pm</span><br>
+									<span class="glyphicon circleGreen"></span>
+									<li>Order # 34634523 acknolwledged by Bhushan</li><br><br>
+									<span class="time">8:20 am</span><br><span class="glyphicon circleGreen"></span>
+									<li>Gopi has started his shift for cooking at 8:20 am</li><br><br>
+								</ul>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script type="text/javascript" src=script.js></script>
+</body>
+</html>
+
